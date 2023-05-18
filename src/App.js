@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Accueil from './pages/Accueil';
+import Formation from './pages/Formation';
+import Projets from './pages/Projets';
+import Experience from './pages/Experience';
+import Certificate from './pages/Certificate';
 
 function App() {
+  const getPageContent = () => {
+    const currentPath = window.location.pathname;
+
+    switch (currentPath) {
+      case '/':
+        return <Accueil />;
+      case '/formations':
+        return <Formation/>;
+      case '/experiences':
+        return <Experience/>;
+      case '/projets':
+        return <Projets />;
+      case '/certificats':
+        return < Certificate/>;
+      default:
+        return <Accueil />;
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      {getPageContent()}
+      <Footer />
     </div>
   );
 }
