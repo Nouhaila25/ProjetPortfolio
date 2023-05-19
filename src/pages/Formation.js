@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTrail, animated } from 'react-spring';
 import myImage from './logoEnsaj.png';
 
 function Formation() {
@@ -51,30 +52,39 @@ function Formation() {
     lineHeight: '1.5',
   };
 
+  const formations = [
+    {
+      title: 'Ecole nationnale des sciences appliqués El jadida',
+      subtitle: 'Cycle préparatoire',
+      description: 'De 2020 à 2022',
+    },
+    {
+      title: 'Ecole nationnale des sciences appliqués El jadida',
+      subtitle: 'Cycle ingénieur',
+      description: 'De 2022 à présent',
+    },
+    // Ajoutez plus de formations selon vos besoins
+  ];
+
+  const trail = useTrail(formations.length, {
+    from: { opacity: 0, transform: 'translateY(20px)' },
+    to: { opacity: 1, transform: 'translateY(0)' },
+    delay: 600, // Augmentez cette valeur pour ralentir l'apparition
+  });
+
   return (
     <div style={containerStyle}>
       <h1 style={titleStyle}>Formations</h1>
-      <div style={formationContainerStyle}>
-        <h2 style={formationTitleStyle}>
-          <img src={myImage} alt="Votre image"  style={logoStyle} />
-          Ecole nationnale des sciences appliqués El jadida
-        </h2>
-        <h3 style={formationSubtitleStyle}>Cycle péparatoire</h3>
-        <p style={formationDescriptionStyle}>
-           De 2020 à 2022
-        </p>
-      </div>
-      <div style={formationContainerStyle}>
-        <h2 style={formationTitleStyle}>
-          <img src={myImage} alt="Votre image"  style={logoStyle} />
-          Ecole nationnale des sciences appliqués El jadida
-        </h2>
-        <h3 style={formationSubtitleStyle}>Cycle ingénieur</h3>
-        <p style={formationDescriptionStyle}>
-          De 2022 à present
-        </p>
-      </div>
-      {/* Ajoutez plus de formations selon vos besoins */}
+      {trail.map((props, index) => (
+        <animated.div key={index} style={{ ...formationContainerStyle, ...props }}>
+          <h2 style={formationTitleStyle}>
+            <img src={myImage} alt="Votre image" style={logoStyle} />
+            {formations[index].title}
+          </h2>
+          <h3 style={formationSubtitleStyle}>{formations[index].subtitle}</h3>
+          <p style={formationDescriptionStyle}>{formations[index].description}</p>
+        </animated.div>
+      ))}
     </div>
   );
 }

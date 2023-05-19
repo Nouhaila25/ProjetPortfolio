@@ -51,8 +51,8 @@ function Header() {
             </a>
           </li>
           <li style={menuItemStyle}>
-            <a href="/experiences" style={menuItemLinkStyle}>
-              Expériences
+            <a href="/competences" style={menuItemLinkStyle}>
+              Competences
             </a>
           </li>
           <li style={menuItemStyle}>

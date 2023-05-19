@@ -4,8 +4,9 @@ import Footer from './components/Footer';
 import Accueil from './pages/Accueil';
 import Formation from './pages/Formation';
 import Projets from './pages/Projets';
-import Experience from './pages/Experience';
+
 import Certificate from './pages/Certificate';
+import Competences from './pages/Competences';
 
 function App() {
   const getPageContent = () => {
@@ -16,8 +17,8 @@ function App() {
         return <Accueil />;
       case '/formations':
         return <Formation/>;
-      case '/experiences':
-        return <Experience/>;
+      case '/competences':
+        return <Competences/>;
       case '/projets':
         return <Projets />;
       case '/certificats':
